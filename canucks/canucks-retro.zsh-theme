@@ -72,7 +72,7 @@ prompt_git() {
     ref="◈ $(command git describe --exact-match --tags HEAD 2> /dev/null)" || \
     ref="➦ $(command git rev-parse --short HEAD 2> /dev/null)"
     if [[ -n $dirty ]]; then
-      prompt_segment $ACCENT ''
+      prompt_segment $TERTIARY ''
     else
       prompt_segment $TERTIARY ''
     fi

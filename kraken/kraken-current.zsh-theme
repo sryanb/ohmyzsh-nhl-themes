@@ -22,7 +22,7 @@ CURRENT_BG='NONE'
 prompt_segment() {
   local bg fg
   [[ -n $1 ]] && bg="%K{$1}" || bg="%k"
-  fg="%F{white}" # Set foreground color to white
+  [[ -n $2 ]] && fg="%F{$2}" || fg="%f"
   if [[ $CURRENT_BG != 'NONE' && $1 != $CURRENT_BG ]]; then
     echo -n " %{$bg%F{$CURRENT_BG}%}$SEGMENT_SEPARATOR%{$fg%} "
   else
@@ -48,7 +48,7 @@ prompt_end() {
 # Context: user with Kraken icon
 prompt_context() {
   if [[ "$USERNAME" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
-    prompt_segment $SECONDARY '' "${TEAM_ICON} %n"
+    prompt_segment $SECONDARY $PRIMARY "${TEAM_ICON} %n"
   fi
 }
 
