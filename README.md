@@ -1,70 +1,53 @@
-```
- ______  _____ _    _   _____                       _   
-|___  / / ____| |  | | |  __ \                     | |  
-   / / | (___ | |__| | | |__) | __ ___  _ __ ___  _ __ | |_ 
-  / /   \___ \|  __  | |  ___/ '__/ _ \| '_ ` _ \| '_ \| __|
- / /__  ____) | |  | | | |   | | | (_) | | | | | | |_) | |_ 
-/_____||_____/|_|  |_| |_|   |_|  \___/|_| |_| |_| .__/ \__|
-                                                 | |        
-                                                 |_|        
-                               _______   _                       
-                              |__   __| | |                      
-                                 | | ___| |__   ___ _ __ ___   ___ 
-                                 | |/ _ \ '_ \ / _ \ '_ ` _ \ / _ \
-                                 | |  __/ | | |  __/ | | | | |  __/
-                                 |_|\___|_| |_|\___|_| |_| |_|\___|
+# NHL Oh My Zsh Prompt Themes
 
-# ZSH Prompt Theme
+This repository contains a collection of Oh My Zsh prompt themes inspired by NHL (National Hockey League) teams. Show your team spirit right in your terminal!
 
-Welcome to my custom ZSH Prompt Theme! This theme enhances your terminal experience with a sleek and informative prompt.
+## Overview
 
-## Features
-
-- Git status integration
-- Current directory display
-- Time stamp
-- Custom colors and icons
+Each theme in this collection represents a different NHL team, featuring the team's colors and logo in your zsh prompt. Whether you're a fan of the Maple Leafs, Canadiens, Bruins, or any other NHL team, there's a theme here for you!
 
 ## Installation
 
-To install this custom oh-my-zsh theme, follow these steps:
+To use these themes, you need to have [Oh My Zsh](https://ohmyz.sh/) installed. If you haven't installed it yet, follow the instructions on their website.
 
-1. Ensure you have [oh-my-zsh](https://ohmyz.sh/) installed.
+### Installing Custom Oh My Zsh Themes
 
-2. Clone this repository:
+1. Clone this repository:
    ```
-   git clone https://github.com/yourusername/zsh-prompt-theme.git
-   ```
-
-3. Copy the theme file to the oh-my-zsh custom themes directory:
-   ```
-   cp zsh-prompt-theme/your-theme-name.zsh-theme ~/.oh-my-zsh/custom/themes/
+   git clone https://github.com/yourusername/nhl-zsh-themes.git
    ```
 
-4. Open your `~/.zshrc` file in a text editor:
+2. Copy the theme files to your Oh My Zsh custom themes directory:
    ```
-   nano ~/.zshrc
-   ```
-
-5. Set the theme in your `~/.zshrc` file:
-   ```
-   ZSH_THEME="your-theme-name"
+   cp nhl-zsh-themes/*.zsh-theme ~/.oh-my-zsh/custom/themes/
    ```
 
-6. Save the file and exit the editor.
+3. Open your `~/.zshrc` file in a text editor.
 
-7. Apply the changes:
+4. Set the `ZSH_THEME` variable to the name of the theme you want to use. For example:
+   ```
+   ZSH_THEME="maple-leafs"
+   ```
+
+5. Save the file and restart your terminal or run:
    ```
    source ~/.zshrc
    ```
 
+## Available Themes
+
+- `maple-leafs.zsh-theme`
+- `canadiens.zsh-theme`
+- `bruins.zsh-theme`
+- ... (list all available themes)
+
 ## Customization
 
-You can customize the theme by editing the `your-theme-name.zsh-theme` file. Feel free to modify colors, icons, or add new features to suit your preferences.
+Feel free to modify the themes to your liking. Each theme file is a zsh script that defines how your prompt looks. You can edit colors, add information, or change the layout.
 
 ## Contributing
 
-Contributions are welcome! If you have any improvements or bug fixes, please open an issue or submit a pull request.
+Contributions are welcome! If you'd like to add a theme for your favorite team or improve an existing one, please submit a pull request.
 
 ## License
 
@@ -72,9 +55,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Acknowledgments
 
-- Inspired by various ZSH themes in the community
-- Thanks to the oh-my-zsh project for making theming easier
+- Thanks to the [Oh My Zsh](https://ohmyz.sh/) project for making terminal customization fun and easy.
+- Inspired by the passion of NHL fans everywhere.
 
-Enjoy your new ZSH prompt theme!
-```
-
+Enjoy your NHL-themed terminal experience!
