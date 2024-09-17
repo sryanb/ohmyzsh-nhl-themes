@@ -37,14 +37,6 @@ To use these themes, you need to have [Oh My Zsh](https://ohmyz.sh/) installed. 
    source ~/.zshrc
    ```
 
-## Available Themes
-
-- `oilers.zsh-theme`
-- `canucks.zsh-theme`
-- `kings.zsh-theme`
-- `kraken.zsh-theme`
-- More coming soon ...
-
 ## Customization
 
 Feel free to modify the themes to your liking. Each theme file is a zsh script that defines how your prompt looks. You can edit colors, add information, or change the layout.
