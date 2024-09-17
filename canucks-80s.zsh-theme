@@ -1,14 +1,14 @@
-# Seattle Kraken Theme for Oh My Zsh using Nerd Fonts
+# 1980s Vancouver Canucks Theme for Oh My Zsh using Nerd Fonts
 
-# Colors (using Kraken palette)
-PRIMARY='24'     # #00405C (Deep Sea Blue)
-SECONDARY='39'   # #00B3E4 (Ice Blue)
-TERTIARY='23'    # #003D57 (Shadowy Blue)
-ACCENT='160'     # #B10000 (Red Alert)
+# Colors (using 1980s Canucks palette)
+PRIMARY='0'       # #000000 (Black)
+SECONDARY='160'   # #E03A3E (Red)
+TERTIARY='220'    # #FFC52F (Gold)
+ACCENT='15'       # #FFFFFF (White)
 RESET='%f'
 
 # Nerd Font Symbols
-TEAM_ICON="\uf34d"    # Nerd Font code for Kraken icon (tentacle)
+TEAM_ICON="\ued6c"      # Nerd Font code for Puck icon
 GIT_BRANCH_ICON="\uF418" # Nerd Font code for git branch icon
 
 # Segment separator for powerline style
@@ -22,9 +22,9 @@ CURRENT_BG='NONE'
 prompt_segment() {
   local bg fg
   [[ -n $1 ]] && bg="%K{$1}" || bg="%k"
-  fg="%F{white}" # Set foreground color to white
+  fg="%F{$ACCENT}" # Set foreground color to ACCENT color
   if [[ $CURRENT_BG != 'NONE' && $1 != $CURRENT_BG ]]; then
-    echo -n " %{$bg%F{$CURRENT_BG}%}$SEGMENT_SEPARATOR%{$fg%} "
+    echo -n "%{$bg%F{$CURRENT_BG}%}$SEGMENT_SEPARATOR%{$fg%} "
   else
     echo -n "%{$bg%}%{$fg%} "
   fi
@@ -45,7 +45,7 @@ prompt_end() {
 
 ### Prompt components
 
-# Context: user with Kraken icon
+# Context: user with Canucks icon
 prompt_context() {
   if [[ "$USERNAME" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
     prompt_segment $SECONDARY '' "${TEAM_ICON} %n"
@@ -78,13 +78,13 @@ prompt_git() {
     fi
 
     local ahead behind
-    ahead=$(command git log --oneline @{upstream}.. 2>/dev/null)
-    behind=$(command git log --oneline ..@{upstream} 2>/dev/null)
-    if [[ -n "$ahead" ]] && [[ -n "$behind" ]]; then
+    ahead=$(command git rev-list --count @{upstream}..HEAD 2>/dev/null)
+    behind=$(command git rev-list --count HEAD..@{upstream} 2>/dev/null)
+    if [[ $ahead -gt 0 ]] && [[ $behind -gt 0 ]]; then
       PL_BRANCH_CHAR=$'\u21c5'
-    elif [[ -n "$ahead" ]]; then
+    elif [[ $ahead -gt 0 ]]; then
       PL_BRANCH_CHAR=$'\u21b1'
-    elif [[ -n "$behind" ]]; then
+    elif [[ $behind -gt 0 ]]; then
       PL_BRANCH_CHAR=$'\u21b0'
     fi
 
@@ -92,7 +92,7 @@ prompt_git() {
       mode=" <B>"
     elif [[ -e "${repo_path}/MERGE_HEAD" ]]; then
       mode=" >M<"
-    elif [[ -e "${repo_path}/rebase" || -e "${repo_path}/rebase-apply" || -e "${repo_path}/rebase-merge" || -e "${repo_path}/../.dotest" ]]; then
+    elif [[ -e "${repo_path}/rebase-apply" || -e "${repo_path}/rebase-merge" ]]; then
       mode=" >R>"
     fi
 
@@ -118,8 +118,8 @@ prompt_dir() {
 
 # Virtualenv: current working virtualenv
 prompt_virtualenv() {
-  if [[ -n "$VIRTUAL_ENV" && -n "$VIRTUAL_ENV_DISABLE_PROMPT" ]]; then
-    prompt_segment $TERTIARY '' "(${VIRTUAL_ENV:t:gs/%/%%})"
+  if [[ -n "$VIRTUAL_ENV" && -z "$VIRTUAL_ENV_DISABLE_PROMPT" ]]; then
+    prompt_segment $TERTIARY '' "(${VIRTUAL_ENV:t})"
   fi
 }
 
@@ -138,8 +138,8 @@ prompt_status() {
 prompt_aws() {
   [[ -z "$AWS_PROFILE" || "$SHOW_AWS_PROMPT" = false ]] && return
   case "$AWS_PROFILE" in
-    *-prod|*production*) prompt_segment $ACCENT '' "AWS: ${AWS_PROFILE:gs/%/%%}" ;;
-    *) prompt_segment $SECONDARY '' "AWS: ${AWS_PROFILE:gs/%/%%}" ;;
+    *-prod|*production*) prompt_segment $ACCENT '' "AWS: ${AWS_PROFILE}" ;;
+    *) prompt_segment $SECONDARY '' "AWS: ${AWS_PROFILE}" ;;
   esac
 }
 
