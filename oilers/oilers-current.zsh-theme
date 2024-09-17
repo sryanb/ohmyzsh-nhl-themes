@@ -74,7 +74,7 @@ prompt_git() {
     if [[ -n $dirty ]]; then
       prompt_segment $WHITE $PRIMARY
     else
-      prompt_segment $SECONDARY $PRIMARY
+      prompt_segment $SECONDARY $WHITE
     fi
 
     local ahead behind
