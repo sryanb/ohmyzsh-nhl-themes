@@ -8,7 +8,7 @@ ACCENT='0'         # #000000 (Black)
 RESET='%f'
 
 # Nerd Font Symbols
-TEAM_ICON=$'\u265E'         # Crossed swords icon (Unicode)
+TEAM_ICON='\ued25'         # Crossed swords icon (Unicode)
 GIT_BRANCH_ICON=$'\uF418'   # Nerd Font code for git branch icon
 
 # Segment separator for powerline style
