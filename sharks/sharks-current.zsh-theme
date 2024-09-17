@@ -8,7 +8,7 @@ ACCENT='15'         # White (#FFFFFF)
 RESET='%f'
 
 # Nerd Font Symbols
-TEAM_ICON="\uf18ba"         # Shark icon from Nerd Fonts
+TEAM_ICON="\uee41"         # Shark icon from Nerd Fonts
 GIT_BRANCH_ICON="\uF418"   # Nerd Font code for git branch icon
 
 # Segment separator for powerline style
