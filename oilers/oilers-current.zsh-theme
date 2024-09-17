@@ -3,6 +3,7 @@
 # Colors (using Oilers palette)
 PRIMARY='27'    # #041E42 (Navy Blue)
 SECONDARY='202' # #FF4C00 (Orange)
+BLACK='0'
 WHITE='255'       # #FFFFFF (White)
 RESET='%f'
 
@@ -71,7 +72,7 @@ prompt_git() {
     ref="◈ $(command git describe --exact-match --tags HEAD 2> /dev/null)" || \
     ref="➦ $(command git rev-parse --short HEAD 2> /dev/null)"
     if [[ -n $dirty ]]; then
-      prompt_segment $SECONDARY $WHITE
+      prompt_segment $WHITE $PRIMARY
     else
       prompt_segment $PRIMARY $WHITE
     fi
