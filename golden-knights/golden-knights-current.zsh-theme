@@ -1,15 +1,15 @@
-# San Jose Sharks Theme for Oh My Zsh using Nerd Fonts
+# Vegas Golden Knights Theme for Oh My Zsh using Nerd Fonts
 
-# Colors (using San Jose Sharks palette)
-PRIMARY='30'        # Teal (#008080)
-SECONDARY='208'     # Orange (#FF8700)
-TERTIARY='0'        # Black (#000000)
-ACCENT='15'         # White (#FFFFFF)
+# Colors (using Vegas Golden Knights palette)
+PRIMARY='236'      # #333F42 (Steel Gray)
+SECONDARY='178'    # #B4975A (Gold)
+TERTIARY='15'      # #FFFFFF (White)
+ACCENT='0'         # #000000 (Black)
 RESET='%f'
 
 # Nerd Font Symbols
-TEAM_ICON="\uf18ba"         # Shark icon from Nerd Fonts
-GIT_BRANCH_ICON="\uF418"   # Nerd Font code for git branch icon
+TEAM_ICON=$'\u265E'         # Crossed swords icon (Unicode)
+GIT_BRANCH_ICON=$'\uF418'   # Nerd Font code for git branch icon
 
 # Segment separator for powerline style
 SEGMENT_SEPARATOR=$'\ue0b0' # Powerline segment separator
@@ -45,16 +45,16 @@ prompt_end() {
 
 ### Prompt components
 
-# Context: user with Sharks icon
+# Context: user with Knights icon
 prompt_context() {
   if [[ "$USERNAME" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
-    prompt_segment $PRIMARY $ACCENT "${TEAM_ICON} %n"
+    prompt_segment $PRIMARY $TERTIARY "${TEAM_ICON} %n"
   fi
 }
 
 # Current working directory
 prompt_dir() {
-  prompt_segment $TERTIARY $ACCENT '%~'
+  prompt_segment $SECONDARY $ACCENT '%~'
 }
 
 # Git: branch/detached head, dirty status
@@ -78,7 +78,7 @@ prompt_git() {
       ref="➦ $(command git rev-parse --short HEAD 2> /dev/null)"
 
     # Set both background and foreground colors
-    prompt_segment $SECONDARY $TERTIARY ''
+    prompt_segment $TERTIARY $ACCENT ''
 
     local ahead behind
     ahead=$(command git rev-list --count @{upstream}..HEAD 2>/dev/null)
@@ -112,14 +112,14 @@ prompt_git() {
     vcs_info
 
     # Display the Git branch icon and branch name
-    echo -n "%{%F{$TERTIARY}%}${${ref:gs/%/%%}/refs\/heads\//$PL_BRANCH_CHAR }%{%f%}${vcs_info_msg_0_%% }${mode}"
+    echo -n "%{%F{$ACCENT}%}${${ref:gs/%/%%}/refs\/heads\//$PL_BRANCH_CHAR }%{%f%}${vcs_info_msg_0_%% }${mode}"
   fi
 }
 
 # Virtualenv: current working virtualenv
 prompt_virtualenv() {
   if [[ -n "$VIRTUAL_ENV" && -z "$VIRTUAL_ENV_DISABLE_PROMPT" ]]; then
-    prompt_segment $SECONDARY $TERTIARY "(${VIRTUAL_ENV:t})"
+    prompt_segment $TERTIARY $ACCENT "(${VIRTUAL_ENV:t})"
   fi
 }
 
@@ -128,8 +128,8 @@ prompt_status() {
   local -a symbols
 
   [[ $RETVAL -ne 0 ]] && symbols+="%{%F{$ACCENT}%}✘"
-  [[ $UID -eq 0 ]] && symbols+="%{%F{$PRIMARY}%}⚡"
-  [[ $(jobs -l | wc -l) -gt 0 ]] && symbols+="%{%F{$SECONDARY}%}⚙"
+  [[ $UID -eq 0 ]] && symbols+="%{%F{$SECONDARY}%}⚡"
+  [[ $(jobs -l | wc -l) -gt 0 ]] && symbols+="%{%F{$PRIMARY}%}⚙"
 
   [[ -n "$symbols" ]] && prompt_segment $TERTIARY $ACCENT "$symbols"
 }
@@ -138,8 +138,8 @@ prompt_status() {
 prompt_aws() {
   [[ -z "$AWS_PROFILE" || "$SHOW_AWS_PROMPT" = false ]] && return
   case "$AWS_PROFILE" in
-    *-prod|*production*) prompt_segment $PRIMARY $ACCENT "AWS: ${AWS_PROFILE}" ;;
-    *) prompt_segment $SECONDARY $TERTIARY "AWS: ${AWS_PROFILE}" ;;
+    *-prod|*production*) prompt_segment $PRIMARY $TERTIARY "AWS: ${AWS_PROFILE}" ;;
+    *) prompt_segment $SECONDARY $ACCENT "AWS: ${AWS_PROFILE}" ;;
   esac
 }
 
