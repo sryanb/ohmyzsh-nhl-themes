@@ -6,6 +6,10 @@ This repository contains a collection of Oh My Zsh prompt themes inspired by NHL
 
 Each theme in this collection represents a different NHL team, featuring the team's colors and logo in your zsh prompt. Whether you're a fan of the Maple Leafs, Canadiens, Bruins, or any other NHL team, there's a theme here for you!
 
+## Preview
+
+![Screnshot](screenshot.png)
+
 ## Installation
 
 To use these themes, you need to have [Oh My Zsh](https://ohmyz.sh/) installed. If you haven't installed it yet, follow the instructions on their website.
