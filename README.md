@@ -13,11 +13,13 @@ To use these themes, you need to have [Oh My Zsh](https://ohmyz.sh/) installed. 
 ### Installing Custom Oh My Zsh Themes
 
 1. Clone this repository:
+
    ```
    git clone https://github.com/yourusername/nhl-zsh-themes.git
    ```
 
 2. Copy the theme files to your Oh My Zsh custom themes directory:
+
    ```
    cp nhl-zsh-themes/*.zsh-theme ~/.oh-my-zsh/custom/themes/
    ```
@@ -25,6 +27,7 @@ To use these themes, you need to have [Oh My Zsh](https://ohmyz.sh/) installed. 
 3. Open your `~/.zshrc` file in a text editor.
 
 4. Set the `ZSH_THEME` variable to the name of the theme you want to use. For example:
+
    ```
    ZSH_THEME="maple-leafs"
    ```
@@ -36,10 +39,9 @@ To use these themes, you need to have [Oh My Zsh](https://ohmyz.sh/) installed. 
 
 ## Available Themes
 
-- `maple-leafs.zsh-theme`
-- `canadiens.zsh-theme`
-- `bruins.zsh-theme`
-- ... (list all available themes)
+- `oilers.zsh-theme`
+- `canucks.zsh-theme`
+- More coming soon ...
 
 ## Customization
 
