@@ -1,9 +1,9 @@
 # Calgary Flames Theme for Oh My Zsh using Nerd Fonts
 
 # Colors (using current Calgary Flames palette)
-PRIMARY='0'        # #000000 (Black)
-SECONDARY='196'    # #C8102E (Red)
-TERTIARY='220'     # #F1BE48 (Yellow/Gold)
+PRIMARY='160'      # #D1001C (Red)
+SECONDARY='214'    # #FAAF19 (Yellow/Gold)
+TERTIARY='15'       # #000000 (Black)
 ACCENT='15'        # #FFFFFF (White)
 RESET='%f'
 
