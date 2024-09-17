@@ -41,6 +41,8 @@ To use these themes, you need to have [Oh My Zsh](https://ohmyz.sh/) installed. 
 
 - `oilers.zsh-theme`
 - `canucks.zsh-theme`
+- `kings.zsh-theme`
+- `kraken.zsh-theme`
 - More coming soon ...
 
 ## Customization
