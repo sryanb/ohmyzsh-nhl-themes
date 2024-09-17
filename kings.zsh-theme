@@ -1,13 +1,13 @@
-# Vancouver Canucks Theme for Oh My Zsh using Nerd Fonts
+# Los Angeles Kings Theme for Oh My Zsh using Nerd Fonts
 
-# Colors (using Canucks palette)
-PRIMARY='27'    # #00205B (Canucks Blue)
-SECONDARY='40'   # #00843D (Canucks Green)
-WHITE='255'          # #FFFFFF (White)
+# Colors (using Kings palette)
+PRIMARY='0'      # #000000 (Black)
+SECONDARY='7'    # #FFFFFF (White)
+ACCENT='240'     # #585858 (Silver/Gray)
 RESET='%f'
 
 # Nerd Font Symbols
-TEAM_ICON="\ued6c"      # Nerd Font code for Puck icon
+TEAM_ICON="\uedeb"    # Nerd Font code for Crown icon (if available)
 GIT_BRANCH_ICON="\uF418" # Nerd Font code for git branch icon
 
 # Segment separator for powerline style
@@ -44,7 +44,7 @@ prompt_end() {
 
 ### Prompt components
 
-# Context: user with Puck icon
+# Context: user with Oil Drop icon
 prompt_context() {
   if [[ "$USERNAME" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
     prompt_segment $SECONDARY $WHITE "${TEAM_ICON} %n"

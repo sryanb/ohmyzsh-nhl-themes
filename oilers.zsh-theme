@@ -7,7 +7,7 @@ WHITE='255'       # #FFFFFF (White)
 RESET='%f'
 
 # Nerd Font Symbols
-OIL_DROP_ICON="\uf043"   # Nerd Font code for Oil Drop icon
+TEAM_ICON="\uf043"   # Nerd Font code for Oil Drop icon
 GIT_BRANCH_ICON="\uF418" # Nerd Font code for git branch icon
 
 # Segment separator for powerline style
@@ -47,7 +47,7 @@ prompt_end() {
 # Context: user with Oil Drop icon
 prompt_context() {
   if [[ "$USERNAME" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
-    prompt_segment $SECONDARY $WHITE "${OIL_DROP_ICON} %n"
+    prompt_segment $SECONDARY $WHITE "${TEAM_ICON} %n"
   fi
 }
 
