@@ -8,7 +8,7 @@ ACCENT='160'     # #B10000 (Red Alert)
 RESET='%f'
 
 # Nerd Font Symbols
-TEAM_ICON="\uf6a2"    # Nerd Font code for Kraken icon (tentacle)
+TEAM_ICON="\uf34d"    # Nerd Font code for Kraken icon (tentacle)
 GIT_BRANCH_ICON="\uF418" # Nerd Font code for git branch icon
 
 # Segment separator for powerline style
