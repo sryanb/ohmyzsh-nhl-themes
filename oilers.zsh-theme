@@ -1,8 +1,8 @@
 # Edmonton Oilers Theme for Oh My Zsh using Nerd Fonts
 
 # Colors (using Oilers palette)
-NAVY_BLUE='27'    # #041E42 (Navy Blue)
-OILERS_ORANGE='202' # #FF4C00 (Orange)
+PRIMARY='27'    # #041E42 (Navy Blue)
+SECONDARY='202' # #FF4C00 (Orange)
 WHITE='255'       # #FFFFFF (White)
 RESET='%f'
 
@@ -47,7 +47,7 @@ prompt_end() {
 # Context: user with Oil Drop icon
 prompt_context() {
   if [[ "$USERNAME" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
-    prompt_segment $OILERS_ORANGE $WHITE "${OIL_DROP_ICON} %n"
+    prompt_segment $SECONDARY $WHITE "${OIL_DROP_ICON} %n"
   fi
 }
 
@@ -71,9 +71,9 @@ prompt_git() {
     ref="◈ $(command git describe --exact-match --tags HEAD 2> /dev/null)" || \
     ref="➦ $(command git rev-parse --short HEAD 2> /dev/null)"
     if [[ -n $dirty ]]; then
-      prompt_segment $OILERS_ORANGE $WHITE
+      prompt_segment $SECONDARY $WHITE
     else
-      prompt_segment $NAVY_BLUE $WHITE
+      prompt_segment $PRIMARY $WHITE
     fi
 
     local ahead behind
@@ -112,13 +112,13 @@ prompt_git() {
 
 # Current working directory
 prompt_dir() {
-  prompt_segment $NAVY_BLUE $WHITE '%~'
+  prompt_segment $PRIMARY $WHITE '%~'
 }
 
 # Virtualenv: current working virtualenv
 prompt_virtualenv() {
   if [[ -n "$VIRTUAL_ENV" && -n "$VIRTUAL_ENV_DISABLE_PROMPT" ]]; then
-    prompt_segment $NAVY_BLUE $WHITE "(${VIRTUAL_ENV:t:gs/%/%%})"
+    prompt_segment $PRIMARY $WHITE "(${VIRTUAL_ENV:t:gs/%/%%})"
   fi
 }
 
