@@ -15,13 +15,13 @@ To use these themes, you need to have [Oh My Zsh](https://ohmyz.sh/) installed. 
 1. Clone this repository:
 
    ```
-   git clone git@github.com:sryanb/ohmyzsh-themes.git
+   git clone https://github.com/sryanb/ohmyzsh-nhl-themes.git
    ```
 
 2. Copy the theme files to your Oh My Zsh custom themes directory:
 
    ```
-   cp ohmyzsh-themes/*.zsh-theme ~/.oh-my-zsh/custom/themes/
+   cp -r ohmyzsh-nhl-themes/[yourteam]/ ~/.oh-my-zsh/custom/themes/
    ```
 
 3. Open your `~/.zshrc` file in a text editor.
@@ -29,7 +29,7 @@ To use these themes, you need to have [Oh My Zsh](https://ohmyz.sh/) installed. 
 4. Set the `ZSH_THEME` variable to the name of the theme you want to use. For example:
 
    ```
-   ZSH_THEME="oilers"
+   ZSH_THEME="oilers/oilers-current"
    ```
 
 5. Save the file and restart your terminal or run:
