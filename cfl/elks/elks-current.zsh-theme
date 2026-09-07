@@ -8,7 +8,7 @@ ACCENT='160'  # #D70000 (Red for alerts)
 RESET='%f'
 
 # Nerd Font Symbols
-TEAM_ICON="EE"    # Double E wordmark (plain text)
+TEAM_ICON="%BEE%b"    # Double E wordmark, bold
 
 # Segment separator for powerline style
 SEGMENT_SEPARATOR=$'\ue0b0' # Powerline segment separator
