@@ -1,15 +1,14 @@
 # 1980s Vancouver Canucks Theme for Oh My Zsh using Nerd Fonts
 
-# Colors (using 1980s Canucks palette)
-PRIMARY='0'       # #000000 (Black)
-SECONDARY='160'   # #E03A3E (Red)
-TERTIARY='220'    # #FFC52F (Gold)
-ACCENT='15'       # #FFFFFF (White)
+# Colors (using 1980s Vancouver Canucks palette)
+PRIMARY='0'  # #000000 (Black)
+SECONDARY='160'  # #E03A3E (Red)
+TERTIARY='220'  # #FFC52F (Gold)
+ACCENT='15'  # #FFFFFF (White)
 RESET='%f'
 
 # Nerd Font Symbols
-TEAM_ICON="\ued6c"      # Nerd Font code for Puck icon
-GIT_BRANCH_ICON="\uF418" # Nerd Font code for git branch icon
+TEAM_ICON="\ued6c"    # Nerd Font code for Puck icon
 
 # Segment separator for powerline style
 SEGMENT_SEPARATOR=$'\ue0b0' # Powerline segment separator
@@ -22,9 +21,9 @@ CURRENT_BG='NONE'
 prompt_segment() {
   local bg fg
   [[ -n $1 ]] && bg="%K{$1}" || bg="%k"
-  fg="%F{$ACCENT}" # Set foreground color to ACCENT color
+  [[ -n $2 ]] && fg="%F{$2}" || fg="%f"
   if [[ $CURRENT_BG != 'NONE' && $1 != $CURRENT_BG ]]; then
-    echo -n "%{$bg%F{$CURRENT_BG}%}$SEGMENT_SEPARATOR%{$fg%} "
+    echo -n " %{$bg%F{$CURRENT_BG}%}$SEGMENT_SEPARATOR%{$fg%} "
   else
     echo -n "%{$bg%}%{$fg%} "
   fi
@@ -48,7 +47,7 @@ prompt_end() {
 # Context: user with Canucks icon
 prompt_context() {
   if [[ "$USERNAME" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
-    prompt_segment $SECONDARY '' "${TEAM_ICON} %n"
+    prompt_segment $SECONDARY $ACCENT "${TEAM_ICON} %n"
   fi
 }
 
@@ -61,7 +60,7 @@ prompt_git() {
   local PL_BRANCH_CHAR
   () {
     local LC_ALL="" LC_CTYPE="en_US.UTF-8"
-    PL_BRANCH_CHAR=$'\ue0a0'         #
+    PL_BRANCH_CHAR=$'\ue0a0'
   }
   local ref dirty mode repo_path
 
@@ -72,19 +71,19 @@ prompt_git() {
     ref="◈ $(command git describe --exact-match --tags HEAD 2> /dev/null)" || \
     ref="➦ $(command git rev-parse --short HEAD 2> /dev/null)"
     if [[ -n $dirty ]]; then
-      prompt_segment $TERTIARY ''
+      prompt_segment $SECONDARY $ACCENT
     else
-      prompt_segment $TERTIARY ''
+      prompt_segment $TERTIARY $PRIMARY
     fi
 
     local ahead behind
-    ahead=$(command git rev-list --count @{upstream}..HEAD 2>/dev/null)
-    behind=$(command git rev-list --count HEAD..@{upstream} 2>/dev/null)
-    if [[ $ahead -gt 0 ]] && [[ $behind -gt 0 ]]; then
+    ahead=$(command git log --oneline @{upstream}.. 2>/dev/null)
+    behind=$(command git log --oneline ..@{upstream} 2>/dev/null)
+    if [[ -n "$ahead" ]] && [[ -n "$behind" ]]; then
       PL_BRANCH_CHAR=$'\u21c5'
-    elif [[ $ahead -gt 0 ]]; then
+    elif [[ -n "$ahead" ]]; then
       PL_BRANCH_CHAR=$'\u21b1'
-    elif [[ $behind -gt 0 ]]; then
+    elif [[ -n "$behind" ]]; then
       PL_BRANCH_CHAR=$'\u21b0'
     fi
 
@@ -92,7 +91,7 @@ prompt_git() {
       mode=" <B>"
     elif [[ -e "${repo_path}/MERGE_HEAD" ]]; then
       mode=" >M<"
-    elif [[ -e "${repo_path}/rebase-apply" || -e "${repo_path}/rebase-merge" ]]; then
+    elif [[ -e "${repo_path}/rebase" || -e "${repo_path}/rebase-apply" || -e "${repo_path}/rebase-merge" || -e "${repo_path}/../.dotest" ]]; then
       mode=" >R>"
     fi
 
@@ -113,13 +112,13 @@ prompt_git() {
 
 # Current working directory
 prompt_dir() {
-  prompt_segment $PRIMARY '' '%~'
+  prompt_segment $PRIMARY $ACCENT '%~'
 }
 
 # Virtualenv: current working virtualenv
 prompt_virtualenv() {
-  if [[ -n "$VIRTUAL_ENV" && -z "$VIRTUAL_ENV_DISABLE_PROMPT" ]]; then
-    prompt_segment $TERTIARY '' "(${VIRTUAL_ENV:t})"
+  if [[ -n "$VIRTUAL_ENV" && -n "$VIRTUAL_ENV_DISABLE_PROMPT" ]]; then
+    prompt_segment $TERTIARY $PRIMARY "(${VIRTUAL_ENV:t:gs/%/%%})"
   fi
 }
 
@@ -131,15 +130,15 @@ prompt_status() {
   [[ $UID -eq 0 ]] && symbols+="%{%F{$SECONDARY}%}⚡"
   [[ $(jobs -l | wc -l) -gt 0 ]] && symbols+="%{%F{$TERTIARY}%}⚙"
 
-  [[ -n "$symbols" ]] && prompt_segment $PRIMARY '' "$symbols"
+  [[ -n "$symbols" ]] && prompt_segment $PRIMARY $TERTIARY "$symbols"
 }
 
 # AWS Profile
 prompt_aws() {
   [[ -z "$AWS_PROFILE" || "$SHOW_AWS_PROMPT" = false ]] && return
   case "$AWS_PROFILE" in
-    *-prod|*production*) prompt_segment $ACCENT '' "AWS: ${AWS_PROFILE}" ;;
-    *) prompt_segment $SECONDARY '' "AWS: ${AWS_PROFILE}" ;;
+    *-prod|*production*) prompt_segment $ACCENT $TERTIARY "AWS: ${AWS_PROFILE:gs/%/%%}" ;;
+    *) prompt_segment $SECONDARY $PRIMARY "AWS: ${AWS_PROFILE:gs/%/%%}" ;;
   esac
 }
 

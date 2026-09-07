@@ -1,15 +1,14 @@
 # Edmonton Oilers Theme for Oh My Zsh using Nerd Fonts
 
-# Colors (using Oilers palette)
-PRIMARY='17'     # #041E42 (Navy Blue)
+# Colors (using Edmonton Oilers palette)
+PRIMARY='17'  # #041E42 (Navy Blue)
 SECONDARY='208'  # #FF4C00 (Orange)
-TERTIARY='15'    # #FFFFFF (White)
-ACCENT='160'     # #B2222C (Dark Red for alerts)
+TERTIARY='15'  # #FFFFFF (White)
+ACCENT='160'  # #B2222C (Dark Red for alerts)
 RESET='%f'
 
 # Nerd Font Symbols
 TEAM_ICON="\uf043"    # Nerd Font code for Oil Drop icon
-GIT_BRANCH_ICON="\uF418" # Nerd Font code for git branch icon
 
 # Segment separator for powerline style
 SEGMENT_SEPARATOR=$'\ue0b0' # Powerline segment separator
@@ -61,7 +60,7 @@ prompt_git() {
   local PL_BRANCH_CHAR
   () {
     local LC_ALL="" LC_CTYPE="en_US.UTF-8"
-    PL_BRANCH_CHAR=$'\ue0a0'         #
+    PL_BRANCH_CHAR=$'\ue0a0'
   }
   local ref dirty mode repo_path
 

@@ -21,9 +21,17 @@ The only parts that differ between themes are at the top of each file:
 
 Everything below that (`prompt_segment`, `prompt_git`, `prompt_dir`, `prompt_status`, `prompt_aws`, `build_prompt`) is shared boilerplate. The segment functions take `(bg, fg, text)`; theme identity comes from which palette variable is passed to each call.
 
+Every file must share the exact same body. The only lines allowed to differ below the palette block are the `TEAM_ICON` line, the `# Context:` comment, and the colour arguments of the four `prompt_segment` calls for user, directory, clean git, and dirty git. Check it with:
+
+```
+for f in nhl/*/*.zsh-theme; do sed -E '1,/^# Nerd Font Symbols/d; /^TEAM_ICON=/d; s/prompt_segment \$[A-Z]+ \$[A-Z]+/prompt_segment X Y/; /^# Context:/d' "$f" | md5 -q; done | sort | uniq -c
+```
+
+One hash means no drift. More than one means a file diverged; fix it by re-applying the shared body rather than patching around it.
+
 Consequences:
 
-- A bug fix in the shared boilerplate must be applied to every `.zsh-theme` file, not just one. Use `diff` between two files to see what has drifted (some files already differ slightly in `prompt_segment` spacing and the rebase check).
+- A bug fix in the shared boilerplate must be applied to every `.zsh-theme` file, not just one, and the drift check above must still report one hash afterwards.
 - To add a team, copy an existing theme, change the header comment, the palette block, `TEAM_ICON`, and the `prompt_segment` colour arguments.
 
 ## Checking a change
