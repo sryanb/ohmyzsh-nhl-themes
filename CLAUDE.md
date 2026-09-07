@@ -36,4 +36,4 @@ or from an existing shell, `source <team>/<team>-current.zsh-theme` and press En
 
 ## Previews
 
-`scripts/preview.py` renders every theme to `nhl/previews/<file-stem>.png` and rewrites the Themes table in `README.md`. Run it after changing any theme. It needs ImageMagick and a Nerd Font (JetBrains Mono Nerd Font Mono by default, override with `PREVIEW_FONT`). Icons that are plain Unicode rather than Nerd Font glyphs (Canadiens, Kings retro) render blank in the previews but work in a terminal with font fallback.
+`nhl/previews/*.png` and the Themes table in `README.md` are generated, not hand-drawn. Regenerate them after changing a theme: expand the prompt with `print -P "$(build_prompt)"` in a throwaway git repo and render the colour runs with ImageMagick and a Nerd Font.
