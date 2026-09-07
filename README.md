@@ -21,7 +21,7 @@ To use these themes, you need to have [Oh My Zsh](https://ohmyz.sh/) installed. 
 2. Copy the theme files to your Oh My Zsh custom themes directory:
 
    ```
-   cp -r ohmyzsh-nhl-themes/[yourteam]/ ~/.oh-my-zsh/custom/themes/
+   cp -r ohmyzsh-nhl-themes/nhl/[yourteam]/ ~/.oh-my-zsh/custom/themes/
    ```
 
 3. Open your `~/.zshrc` file in a text editor.
