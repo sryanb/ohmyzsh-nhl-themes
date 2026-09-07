@@ -9,7 +9,6 @@ RESET='%f'
 
 # Nerd Font Symbols
 TEAM_ICON="\uf2dc"    # Nerd Font code for snowflake icon
-GIT_BRANCH_ICON="\uF418" # Nerd Font code for git branch icon
 
 # Segment separator for powerline style
 SEGMENT_SEPARATOR=$'\ue0b0' # Powerline segment separator
@@ -61,7 +60,7 @@ prompt_git() {
   local PL_BRANCH_CHAR
   () {
     local LC_ALL="" LC_CTYPE="en_US.UTF-8"
-    PL_BRANCH_CHAR=$'\ue0a0'         #
+    PL_BRANCH_CHAR=$'\ue0a0'
   }
   local ref dirty mode repo_path
 

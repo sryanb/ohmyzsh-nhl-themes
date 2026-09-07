@@ -1,15 +1,14 @@
 # Seattle Kraken Theme for Oh My Zsh using Nerd Fonts
 
-# Colors (using Kraken palette)
-PRIMARY='24'     # #00405C (Deep Sea Blue)
-SECONDARY='39'   # #00B3E4 (Ice Blue)
-TERTIARY='23'    # #003D57 (Shadowy Blue)
-ACCENT='160'     # #B10000 (Red Alert)
+# Colors (using Seattle Kraken palette)
+PRIMARY='24'  # #00405C (Deep Sea Blue)
+SECONDARY='39'  # #00B3E4 (Ice Blue)
+TERTIARY='15'  # #FFFFFF (White)
+ACCENT='160'  # #B10000 (Red Alert)
 RESET='%f'
 
 # Nerd Font Symbols
 TEAM_ICON="\uf34d"    # Nerd Font code for Kraken icon (tentacle)
-GIT_BRANCH_ICON="\uF418" # Nerd Font code for git branch icon
 
 # Segment separator for powerline style
 SEGMENT_SEPARATOR=$'\ue0b0' # Powerline segment separator
@@ -48,7 +47,7 @@ prompt_end() {
 # Context: user with Kraken icon
 prompt_context() {
   if [[ "$USERNAME" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
-    prompt_segment $SECONDARY $PRIMARY "${TEAM_ICON} %n"
+    prompt_segment $SECONDARY $TERTIARY "${TEAM_ICON} %n"
   fi
 }
 
@@ -61,7 +60,7 @@ prompt_git() {
   local PL_BRANCH_CHAR
   () {
     local LC_ALL="" LC_CTYPE="en_US.UTF-8"
-    PL_BRANCH_CHAR=$'\ue0a0'         #
+    PL_BRANCH_CHAR=$'\ue0a0'
   }
   local ref dirty mode repo_path
 
@@ -72,9 +71,9 @@ prompt_git() {
     ref="◈ $(command git describe --exact-match --tags HEAD 2> /dev/null)" || \
     ref="➦ $(command git rev-parse --short HEAD 2> /dev/null)"
     if [[ -n $dirty ]]; then
-      prompt_segment $ACCENT ''
+      prompt_segment $ACCENT $TERTIARY
     else
-      prompt_segment $TERTIARY ''
+      prompt_segment $PRIMARY $TERTIARY
     fi
 
     local ahead behind
@@ -113,13 +112,13 @@ prompt_git() {
 
 # Current working directory
 prompt_dir() {
-  prompt_segment $PRIMARY '' '%~'
+  prompt_segment $PRIMARY $TERTIARY '%~'
 }
 
 # Virtualenv: current working virtualenv
 prompt_virtualenv() {
   if [[ -n "$VIRTUAL_ENV" && -n "$VIRTUAL_ENV_DISABLE_PROMPT" ]]; then
-    prompt_segment $TERTIARY '' "(${VIRTUAL_ENV:t:gs/%/%%})"
+    prompt_segment $TERTIARY $PRIMARY "(${VIRTUAL_ENV:t:gs/%/%%})"
   fi
 }
 
@@ -131,15 +130,15 @@ prompt_status() {
   [[ $UID -eq 0 ]] && symbols+="%{%F{$SECONDARY}%}⚡"
   [[ $(jobs -l | wc -l) -gt 0 ]] && symbols+="%{%F{$TERTIARY}%}⚙"
 
-  [[ -n "$symbols" ]] && prompt_segment $PRIMARY '' "$symbols"
+  [[ -n "$symbols" ]] && prompt_segment $PRIMARY $TERTIARY "$symbols"
 }
 
 # AWS Profile
 prompt_aws() {
   [[ -z "$AWS_PROFILE" || "$SHOW_AWS_PROMPT" = false ]] && return
   case "$AWS_PROFILE" in
-    *-prod|*production*) prompt_segment $ACCENT '' "AWS: ${AWS_PROFILE:gs/%/%%}" ;;
-    *) prompt_segment $SECONDARY '' "AWS: ${AWS_PROFILE:gs/%/%%}" ;;
+    *-prod|*production*) prompt_segment $ACCENT $TERTIARY "AWS: ${AWS_PROFILE:gs/%/%%}" ;;
+    *) prompt_segment $SECONDARY $PRIMARY "AWS: ${AWS_PROFILE:gs/%/%%}" ;;
   esac
 }
 

@@ -1,15 +1,14 @@
 # San Jose Sharks Theme for Oh My Zsh using Nerd Fonts
 
 # Colors (using San Jose Sharks palette)
-PRIMARY='30'        # Teal (#008080)
-SECONDARY='208'     # Orange (#FF8700)
-TERTIARY='0'        # Black (#000000)
-ACCENT='15'         # White (#FFFFFF)
+PRIMARY='30'  # #008080 (Teal)
+SECONDARY='208'  # #FF8700 (Orange)
+TERTIARY='0'  # #000000 (Black)
+ACCENT='15'  # #FFFFFF (White)
 RESET='%f'
 
 # Nerd Font Symbols
-TEAM_ICON="\uee41"         # Shark icon from Nerd Fonts
-GIT_BRANCH_ICON="\uF418"   # Nerd Font code for git branch icon
+TEAM_ICON="\uee41"    # Shark icon from Nerd Fonts
 
 # Segment separator for powerline style
 SEGMENT_SEPARATOR=$'\ue0b0' # Powerline segment separator
@@ -24,7 +23,7 @@ prompt_segment() {
   [[ -n $1 ]] && bg="%K{$1}" || bg="%k"
   [[ -n $2 ]] && fg="%F{$2}" || fg="%f"
   if [[ $CURRENT_BG != 'NONE' && $1 != $CURRENT_BG ]]; then
-    echo -n "%{$bg%F{$CURRENT_BG}%}$SEGMENT_SEPARATOR%{$fg%} "
+    echo -n " %{$bg%F{$CURRENT_BG}%}$SEGMENT_SEPARATOR%{$fg%} "
   else
     echo -n "%{$bg%}%{$fg%} "
   fi
@@ -52,11 +51,6 @@ prompt_context() {
   fi
 }
 
-# Current working directory
-prompt_dir() {
-  prompt_segment $TERTIARY $ACCENT '%~'
-}
-
 # Git: branch/detached head, dirty status
 prompt_git() {
   (( $+commands[git] )) || return
@@ -66,7 +60,7 @@ prompt_git() {
   local PL_BRANCH_CHAR
   () {
     local LC_ALL="" LC_CTYPE="en_US.UTF-8"
-    PL_BRANCH_CHAR=$'\ue0a0'  # Git branch icon
+    PL_BRANCH_CHAR=$'\ue0a0'
   }
   local ref dirty mode repo_path
 
@@ -74,20 +68,22 @@ prompt_git() {
     repo_path=$(command git rev-parse --git-dir 2>/dev/null)
     dirty=$(parse_git_dirty)
     ref=$(command git symbolic-ref HEAD 2> /dev/null) || \
-      ref="◈ $(command git describe --exact-match --tags HEAD 2> /dev/null)" || \
-      ref="➦ $(command git rev-parse --short HEAD 2> /dev/null)"
-
-    # Set both background and foreground colors
-    prompt_segment $SECONDARY $TERTIARY ''
+    ref="◈ $(command git describe --exact-match --tags HEAD 2> /dev/null)" || \
+    ref="➦ $(command git rev-parse --short HEAD 2> /dev/null)"
+    if [[ -n $dirty ]]; then
+      prompt_segment $ACCENT $TERTIARY
+    else
+      prompt_segment $SECONDARY $TERTIARY
+    fi
 
     local ahead behind
-    ahead=$(command git rev-list --count @{upstream}..HEAD 2>/dev/null)
-    behind=$(command git rev-list --count HEAD..@{upstream} 2>/dev/null)
-    if [[ $ahead -gt 0 ]] && [[ $behind -gt 0 ]]; then
+    ahead=$(command git log --oneline @{upstream}.. 2>/dev/null)
+    behind=$(command git log --oneline ..@{upstream} 2>/dev/null)
+    if [[ -n "$ahead" ]] && [[ -n "$behind" ]]; then
       PL_BRANCH_CHAR=$'\u21c5'
-    elif [[ $ahead -gt 0 ]]; then
+    elif [[ -n "$ahead" ]]; then
       PL_BRANCH_CHAR=$'\u21b1'
-    elif [[ $behind -gt 0 ]]; then
+    elif [[ -n "$behind" ]]; then
       PL_BRANCH_CHAR=$'\u21b0'
     fi
 
@@ -95,7 +91,7 @@ prompt_git() {
       mode=" <B>"
     elif [[ -e "${repo_path}/MERGE_HEAD" ]]; then
       mode=" >M<"
-    elif [[ -e "${repo_path}/rebase-apply" || -e "${repo_path}/rebase-merge" ]]; then
+    elif [[ -e "${repo_path}/rebase" || -e "${repo_path}/rebase-apply" || -e "${repo_path}/rebase-merge" || -e "${repo_path}/../.dotest" ]]; then
       mode=" >R>"
     fi
 
@@ -110,16 +106,19 @@ prompt_git() {
     zstyle ':vcs_info:*' formats ' %u%c'
     zstyle ':vcs_info:*' actionformats ' %u%c'
     vcs_info
-
-    # Display the Git branch icon and branch name
-    echo -n "%{%F{$TERTIARY}%}${${ref:gs/%/%%}/refs\/heads\//$PL_BRANCH_CHAR }%{%f%}${vcs_info_msg_0_%% }${mode}"
+    echo -n "${${ref:gs/%/%%}/refs\/heads\//$PL_BRANCH_CHAR }${vcs_info_msg_0_%% }${mode}"
   fi
+}
+
+# Current working directory
+prompt_dir() {
+  prompt_segment $TERTIARY $ACCENT '%~'
 }
 
 # Virtualenv: current working virtualenv
 prompt_virtualenv() {
-  if [[ -n "$VIRTUAL_ENV" && -z "$VIRTUAL_ENV_DISABLE_PROMPT" ]]; then
-    prompt_segment $SECONDARY $TERTIARY "(${VIRTUAL_ENV:t})"
+  if [[ -n "$VIRTUAL_ENV" && -n "$VIRTUAL_ENV_DISABLE_PROMPT" ]]; then
+    prompt_segment $TERTIARY $PRIMARY "(${VIRTUAL_ENV:t:gs/%/%%})"
   fi
 }
 
@@ -128,18 +127,18 @@ prompt_status() {
   local -a symbols
 
   [[ $RETVAL -ne 0 ]] && symbols+="%{%F{$ACCENT}%}✘"
-  [[ $UID -eq 0 ]] && symbols+="%{%F{$PRIMARY}%}⚡"
-  [[ $(jobs -l | wc -l) -gt 0 ]] && symbols+="%{%F{$SECONDARY}%}⚙"
+  [[ $UID -eq 0 ]] && symbols+="%{%F{$SECONDARY}%}⚡"
+  [[ $(jobs -l | wc -l) -gt 0 ]] && symbols+="%{%F{$TERTIARY}%}⚙"
 
-  [[ -n "$symbols" ]] && prompt_segment $TERTIARY $ACCENT "$symbols"
+  [[ -n "$symbols" ]] && prompt_segment $PRIMARY $TERTIARY "$symbols"
 }
 
 # AWS Profile
 prompt_aws() {
   [[ -z "$AWS_PROFILE" || "$SHOW_AWS_PROMPT" = false ]] && return
   case "$AWS_PROFILE" in
-    *-prod|*production*) prompt_segment $PRIMARY $ACCENT "AWS: ${AWS_PROFILE}" ;;
-    *) prompt_segment $SECONDARY $TERTIARY "AWS: ${AWS_PROFILE}" ;;
+    *-prod|*production*) prompt_segment $ACCENT $TERTIARY "AWS: ${AWS_PROFILE:gs/%/%%}" ;;
+    *) prompt_segment $SECONDARY $PRIMARY "AWS: ${AWS_PROFILE:gs/%/%%}" ;;
   esac
 }
 

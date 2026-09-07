@@ -1,15 +1,14 @@
 # LA Kings Theme for Oh My Zsh using Nerd Fonts
 
 # Colors (using LA Kings palette)
-PRIMARY='0'      # #000000 (Black)
-SECONDARY='7'    # #A2AAAD (Silver/Grey)
-TERTIARY='15'    # #FFFFFF (White)
-ACCENT='8'       # #808080 (Dark Grey) for alerts
+PRIMARY='0'  # #000000 (Black)
+SECONDARY='7'  # #A2AAAD (Silver)
+TERTIARY='15'  # #FFFFFF (White)
+ACCENT='8'  # #808080 (Dark Grey)
 RESET='%f'
 
 # Nerd Font Symbols
 TEAM_ICON="\uedeb"    # Nerd Font code for a crown icon
-GIT_BRANCH_ICON="\uF418" # Nerd Font code for git branch icon
 
 # Segment separator for powerline style
 SEGMENT_SEPARATOR=$'\ue0b0' # Powerline segment separator
@@ -61,7 +60,7 @@ prompt_git() {
   local PL_BRANCH_CHAR
   () {
     local LC_ALL="" LC_CTYPE="en_US.UTF-8"
-    PL_BRANCH_CHAR=$'\ue0a0'         #
+    PL_BRANCH_CHAR=$'\ue0a0'
   }
   local ref dirty mode repo_path
 
@@ -74,7 +73,7 @@ prompt_git() {
     if [[ -n $dirty ]]; then
       prompt_segment $ACCENT $TERTIARY
     else
-      prompt_segment $PRIMARY $SECONDARY
+      prompt_segment $PRIMARY $TERTIARY
     fi
 
     local ahead behind
@@ -118,8 +117,8 @@ prompt_dir() {
 
 # Virtualenv: current working virtualenv
 prompt_virtualenv() {
-  if [[ -n "$VIRTUAL_ENV" && -z "$VIRTUAL_ENV_DISABLE_PROMPT" ]]; then
-    prompt_segment $TERTIARY $PRIMARY "(${VIRTUAL_ENV:t})"
+  if [[ -n "$VIRTUAL_ENV" && -n "$VIRTUAL_ENV_DISABLE_PROMPT" ]]; then
+    prompt_segment $TERTIARY $PRIMARY "(${VIRTUAL_ENV:t:gs/%/%%})"
   fi
 }
 
@@ -138,8 +137,8 @@ prompt_status() {
 prompt_aws() {
   [[ -z "$AWS_PROFILE" || "$SHOW_AWS_PROMPT" = false ]] && return
   case "$AWS_PROFILE" in
-    *-prod|*production*) prompt_segment $ACCENT $TERTIARY "AWS: ${AWS_PROFILE}" ;;
-    *) prompt_segment $SECONDARY $PRIMARY "AWS: ${AWS_PROFILE}" ;;
+    *-prod|*production*) prompt_segment $ACCENT $TERTIARY "AWS: ${AWS_PROFILE:gs/%/%%}" ;;
+    *) prompt_segment $SECONDARY $PRIMARY "AWS: ${AWS_PROFILE:gs/%/%%}" ;;
   esac
 }
 
