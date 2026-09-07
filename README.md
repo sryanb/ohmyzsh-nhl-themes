@@ -1,12 +1,14 @@
-# NHL Oh My Zsh Prompt Themes
+# Sports Team Oh My Zsh Prompt Themes
 
-This repository contains a collection of Oh My Zsh prompt themes inspired by NHL (National Hockey League) teams. Show your team spirit right in your terminal!
+A collection of Oh My Zsh prompt themes in the colours of professional sports teams. Show your team spirit right in your terminal!
 
 ## Overview
 
-Each theme in this collection represents a different NHL team, featuring the team's colors and logo in your zsh prompt. Whether you're a fan of the Maple Leafs, Canadiens, Bruins, or any other NHL team, there's a theme here for you!
+Themes are grouped by league, one folder per league and one folder per team inside it. Each theme uses the team's colours and a Nerd Font icon in your zsh prompt. Every NHL team is covered today; more leagues are welcome.
 
 ## Themes
+
+### NHL
 
 Rendered with JetBrains Mono Nerd Font on a dark background.
 
@@ -58,13 +60,13 @@ To use these themes, you need to have [Oh My Zsh](https://ohmyz.sh/) installed. 
 1. Clone this repository:
 
    ```
-   git clone https://github.com/sryanb/ohmyzsh-nhl-themes.git
+   git clone https://github.com/sryanb/ohmyzsh-sports-themes.git
    ```
 
 2. Copy the theme files to your Oh My Zsh custom themes directory:
 
    ```
-   cp -r ohmyzsh-nhl-themes/nhl/[yourteam]/ ~/.oh-my-zsh/custom/themes/
+   cp -r ohmyzsh-sports-themes/[league]/[yourteam]/ ~/.oh-my-zsh/custom/themes/
    ```
 
 3. Open your `~/.zshrc` file in a text editor.
@@ -86,7 +88,7 @@ Feel free to modify the themes to your liking. Each theme file is a zsh script t
 
 ## Contributing
 
-Contributions are welcome! If you'd like to add a theme for your favorite team or improve an existing one, please submit a pull request.
+Contributions are welcome! If you'd like to add a theme for your favorite team, add a new league, or improve an existing theme, please submit a pull request.
 
 ## License
 
@@ -95,6 +97,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Acknowledgments
 
 - Thanks to the [Oh My Zsh](https://ohmyz.sh/) project for making terminal customization fun and easy.
-- Inspired by the passion of NHL fans everywhere.
+- Inspired by the passion of sports fans everywhere.
 
-Enjoy your NHL-themed terminal experience!
+Enjoy your team-themed terminal experience!

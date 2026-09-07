@@ -4,11 +4,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-NHL-team-coloured Oh My Zsh prompt themes. Pure zsh, no build, no tests, no dependencies beyond Oh My Zsh and a Nerd Font.
+Sports-team-coloured Oh My Zsh prompt themes, grouped by league. Pure zsh, no build, no tests, no dependencies beyond Oh My Zsh and a Nerd Font.
 
 ## Layout
 
-One directory per team under `nhl/`, containing `<team>-current.zsh-theme` and optionally `<team>-retro.zsh-theme` (retro palette). Users copy the directory into `~/.oh-my-zsh/custom/themes/` and set `ZSH_THEME="<team>/<team>-current"`.
+One directory per league (`nhl/` today), and one directory per team inside it, containing `<team>-current.zsh-theme` and optionally `<team>-retro.zsh-theme` (retro palette). Users copy the directory into `~/.oh-my-zsh/custom/themes/` and set `ZSH_THEME="<team>/<team>-current"`. A new league is a new top-level folder with its own `### <League>` subsection under Themes in the README.
 
 ## Architecture
 
