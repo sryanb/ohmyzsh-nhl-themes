@@ -8,7 +8,7 @@ ACCENT='160'  # #C8102E (Red)
 RESET='%f'
 
 # Nerd Font Symbols
-TEAM_ICON="\u2694"    # Nerd Font code for crossed swords icon
+TEAM_ICON="\U000f0787"    # Nerd Font code for crossed swords icon
 GIT_BRANCH_ICON="\uF418" # Nerd Font code for git branch icon
 
 # Segment separator for powerline style

@@ -33,3 +33,7 @@ ZSH_THEME="oilers/oilers-current" zsh -i
 ```
 
 or from an existing shell, `source <team>/<team>-current.zsh-theme` and press Enter to redraw the prompt. Test inside a git repo with a dirty tree to exercise `prompt_git`.
+
+## Previews
+
+`scripts/preview.py` renders every theme to `nhl/previews/<file-stem>.png` and rewrites the Themes table in `README.md`. Run it after changing any theme. It needs ImageMagick and a Nerd Font (JetBrains Mono Nerd Font Mono by default, override with `PREVIEW_FONT`). Icons that are plain Unicode rather than Nerd Font glyphs (Canadiens, Kings retro) render blank in the previews but work in a terminal with font fallback.

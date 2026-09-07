@@ -8,7 +8,7 @@ ACCENT='0'  # #000000 (Black)
 RESET='%f'
 
 # Nerd Font Symbols
-TEAM_ICON="\uf1fc"    # Nerd Font code for feather icon
+TEAM_ICON="\ue351"    # Nerd Font code for feather icon
 GIT_BRANCH_ICON="\uF418" # Nerd Font code for git branch icon
 
 # Segment separator for powerline style

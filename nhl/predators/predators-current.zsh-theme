@@ -8,7 +8,7 @@ ACCENT='17'  # #041E42 (Navy)
 RESET='%f'
 
 # Nerd Font Symbols
-TEAM_ICON="\uf06e"    # Nerd Font code for eye icon
+TEAM_ICON="\U000f08c3"    # Nerd Font code for tooth icon
 GIT_BRANCH_ICON="\uF418" # Nerd Font code for git branch icon
 
 # Segment separator for powerline style
@@ -45,7 +45,7 @@ prompt_end() {
 
 ### Prompt components
 
-# Context: user with eye icon
+# Context: user with tooth icon
 prompt_context() {
   if [[ "$USERNAME" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
     prompt_segment $SECONDARY $PRIMARY "${TEAM_ICON} %n"
