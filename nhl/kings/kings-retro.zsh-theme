@@ -8,7 +8,7 @@ ACCENT='0'       # Black
 RESET='%f'
 
 # Nerd Font Symbols
-TEAM_ICON="\u265B"    # Unicode code for Black Chess Queen (Crown)
+TEAM_ICON="\uedeb"    # Nerd Font code for a crown icon
 GIT_BRANCH_ICON="\uF418" # Nerd Font code for git branch icon
 
 # Segment separator for powerline style
@@ -48,7 +48,7 @@ prompt_end() {
 # Context: user with Crown icon
 prompt_context() {
   if [[ "$USERNAME" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
-    prompt_segment $SECONDARY $ACCENT "${TEAM_ICON} %n"
+    prompt_segment $SECONDARY $PRIMARY "${TEAM_ICON} %n"
   fi
 }
 
