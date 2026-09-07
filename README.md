@@ -4,7 +4,7 @@ A collection of Oh My Zsh prompt themes in the colours of professional sports te
 
 ## Overview
 
-Themes are grouped by league, one folder per league and one folder per team inside it. Each theme uses the team's colours and a Nerd Font icon in your zsh prompt. Every NHL team is covered today; more leagues are welcome.
+Themes are grouped by league, one folder per league and one folder per team inside it. Each theme uses the team's colours and a Nerd Font icon in your zsh prompt. Every NHL and CFL team is covered today; more leagues are welcome.
 
 ## Themes
 
@@ -50,6 +50,22 @@ Rendered with JetBrains Mono Nerd Font on a dark background.
 | San Jose Sharks | `nhl/sharks/sharks-current.zsh-theme` | ![San Jose Sharks](nhl/previews/sharks-current.png) |
 | Dallas Stars | `nhl/stars/stars-current.zsh-theme` | ![Dallas Stars](nhl/previews/stars-current.png) |
 | Minnesota Wild | `nhl/wild/wild-current.zsh-theme` | ![Minnesota Wild](nhl/previews/wild-current.png) |
+
+### CFL
+
+Rendered with JetBrains Mono Nerd Font on a dark background.
+
+| Team | File | Preview |
+|---|---|---|
+| Montreal Alouettes | `cfl/alouettes/alouettes-current.zsh-theme` | ![Montreal Alouettes](cfl/previews/alouettes-current.png) |
+| Toronto Argonauts | `cfl/argonauts/argonauts-current.zsh-theme` | ![Toronto Argonauts](cfl/previews/argonauts-current.png) |
+| Winnipeg Blue Bombers | `cfl/blue-bombers/blue-bombers-current.zsh-theme` | ![Winnipeg Blue Bombers](cfl/previews/blue-bombers-current.png) |
+| Edmonton Elks | `cfl/elks/elks-current.zsh-theme` | ![Edmonton Elks](cfl/previews/elks-current.png) |
+| BC Lions | `cfl/lions/lions-current.zsh-theme` | ![BC Lions](cfl/previews/lions-current.png) |
+| Ottawa Redblacks | `cfl/redblacks/redblacks-current.zsh-theme` | ![Ottawa Redblacks](cfl/previews/redblacks-current.png) |
+| Saskatchewan Roughriders | `cfl/roughriders/roughriders-current.zsh-theme` | ![Saskatchewan Roughriders](cfl/previews/roughriders-current.png) |
+| Calgary Stampeders | `cfl/stampeders/stampeders-current.zsh-theme` | ![Calgary Stampeders](cfl/previews/stampeders-current.png) |
+| Hamilton Tiger-Cats | `cfl/tiger-cats/tiger-cats-current.zsh-theme` | ![Hamilton Tiger-Cats](cfl/previews/tiger-cats-current.png) |
 
 ## Installation
 
